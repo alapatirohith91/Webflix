@@ -27,3 +27,8 @@ $("#closeSearch").onclick=()=>$("#searchPanel").classList.remove("open");
 $("#searchInput").oninput=e=>{const query=e.target.value.trim().toLowerCase();if(!query){$("#resultsSection").style.display="none";return}const hits=movies.filter(m=>(m.title+" "+m.genre+" "+m.year+" "+m.collection).toLowerCase().includes(query));$("#resultsSection").style.display="block";$("#resultsTitle").textContent='Results for "'+query+'" • '+hits.length;render("results",hits)};
 window.addEventListener("scroll",()=>$(".nav").classList.toggle("scrolled",scrollY>30));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("#modal").classList.remove("open");$("#searchPanel").classList.remove("open")}});
+
+// Horizontal movie-row navigation + mouse/touch drag support
+function scrollRow(id,dir){const row=$("#"+id);if(row)row.scrollBy({left:dir*Math.max(row.clientWidth*.82,520),behavior:"smooth"})}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-scroll]");if(b)scrollRow(b.dataset.scroll,+b.dataset.dir)});
+document.querySelectorAll(".movie-row").forEach(row=>{let down=false,start=0,left=0;row.addEventListener("pointerdown",e=>{down=true;start=e.clientX;left=row.scrollLeft;row.setPointerCapture(e.pointerId)});row.addEventListener("pointermove",e=>{if(down)row.scrollLeft=left-(e.clientX-start)*1.25});row.addEventListener("pointerup",()=>down=false);row.addEventListener("pointercancel",()=>down=false)});
