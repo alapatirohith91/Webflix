@@ -37,7 +37,10 @@ const ntrFilms=[
 const movies=[...baseMovies.map((x,i)=>({id:i+1,title:x[0],year:x[1],rating:x[2],genre:x[3],poster:x[4],collection:"Webflix"})),...ntrFilms.map((x,i)=>({id:101+i,title:x[0],year:x[1],rating:x[2],genre:x[3],poster:x[4]||ntrPhoto,collection:"Jr NTR"}))];
 let list=JSON.parse(localStorage.getItem("webflix-list")||"[]");
 const $=s=>document.querySelector(s);
-function card(m){return '<article class="card" data-id="'+m.id+'"><img src="'+m.poster+'" alt="'+m.title+' poster" loading="lazy" onerror="this.src=\''+ntrPhoto+'\'"><button class="add" data-add="'+m.id+'">'+(list.includes(m.id)?"✓":"+")+'</button><div class="card-info"><div class="card-title">'+m.title+'</div><div class="card-meta">★ '+m.rating+' • '+m.year+(m.collection==="Jr NTR"?" • Jr NTR":"")+'</div></div></article>'}
+function card(m){
+ const favorite=list.includes(m.id);
+ return '<article class="card" data-id="'+m.id+'"><img src="'+m.poster+'" alt="'+m.title+' poster" loading="lazy" onerror="this.src=\''+ntrPhoto+'\'"><button class="add '+(favorite?'is-favorite':'')+'" data-add="'+m.id+'" aria-label="'+(favorite?'Remove '+m.title+' from favorites':'Add '+m.title+' to favorites')+'">'+(favorite?'♥':'♡')+'</button><div class="card-info"><div class="card-title">'+m.title+'</div><div class="card-meta">★ '+m.rating+' • '+m.year+(m.collection==="Jr NTR"?" • Jr NTR":"")+'</div></div></article>'
+}
 function render(id,arr){const el=$("#"+id);if(el)el.innerHTML=arr.map(card).join("")}
 render("trending",movies.filter(m=>m.collection==="Webflix").slice(0,8));
 render("popular",[...movies].sort((a,b)=>b.rating-a.rating).slice(0,12));
@@ -45,13 +48,13 @@ render("ntrMovies",movies.filter(m=>m.collection==="Jr NTR"));
 render("acclaimed",[...movies].sort((a,b)=>b.rating-a.rating).slice(0,10));
 const genres=[...new Set(movies.map(m=>m.genre))];
 $("#genreButtons").innerHTML=genres.map(g=>'<button class="genre" data-genre="'+g+'">'+g+'</button>').join("");
-function renderList(){const a=movies.filter(m=>list.includes(m.id));render("myList",a);$("#listCount").textContent=a.length+" title"+(a.length===1?"":"s")}
+function renderList(){const a=movies.filter(m=>list.includes(m.id));render("myList",a);$("#listCount").textContent=a.length+" favorite"+(a.length===1?"":"s")}
 renderList();
-function openMovie(id){const m=movies.find(x=>x.id===id);if(!m)return;$("#modalPoster").src=m.poster;$("#modalTitle").textContent=m.title;$("#modalGenre").textContent=(m.collection==="Jr NTR"?"JR NTR • ":"")+m.genre.toUpperCase();$("#modalMeta").innerHTML="<span>★ "+m.rating+"</span><span>"+m.year+"</span><span class='pill'>HD</span>";$("#modalDescription").textContent=m.collection==="Jr NTR"?m.title+" ("+m.year+") — part of the Jr NTR filmography collection.":"Explore "+m.title+" — a "+m.genre.toLowerCase()+" title from "+m.year+".";$("#modalList").dataset.id=id;$("#modalList").textContent=list.includes(id)?"✓ In My List":"＋ My List";$("#modal").classList.add("open")}
-document.addEventListener("click",e=>{const c=e.target.closest(".card");if(c&&!e.target.closest(".add"))openMovie(+c.dataset.id);const a=e.target.closest("[data-add]");if(a){const id=+a.dataset.add;list=list.includes(id)?list.filter(x=>x!==id):[...list,id];localStorage.setItem("webflix-list",JSON.stringify(list));a.textContent=list.includes(id)?"✓":"+";renderList()}const g=e.target.closest("[data-genre]");if(g){const hits=movies.filter(m=>m.genre===g.dataset.genre);$("#resultsSection").style.display="block";$("#resultsTitle").textContent=g.dataset.genre+" Movies";render("results",hits);$("#resultsSection").scrollIntoView({behavior:"smooth"})}});
+function openMovie(id){const m=movies.find(x=>x.id===id);if(!m)return;$("#modalPoster").src=m.poster;$("#modalTitle").textContent=m.title;$("#modalGenre").textContent=(m.collection==="Jr NTR"?"JR NTR • ":"")+m.genre.toUpperCase();$("#modalMeta").innerHTML="<span>★ "+m.rating+"</span><span>"+m.year+"</span><span class='pill'>HD</span>";$("#modalDescription").textContent=m.collection==="Jr NTR"?m.title+" ("+m.year+") — part of the Jr NTR filmography collection.":"Explore "+m.title+" — a "+m.genre.toLowerCase()+" title from "+m.year+".";$("#modalList").dataset.id=id;$("#modalList").textContent=list.includes(id)?"♥ In Favorites":"♡ Add to Favorites";$("#modal").classList.add("open")}
+document.addEventListener("click",e=>{const c=e.target.closest(".card");if(c&&!e.target.closest(".add"))openMovie(+c.dataset.id);const a=e.target.closest("[data-add]");if(a){const id=+a.dataset.add;list=list.includes(id)?list.filter(x=>x!==id):[...list,id];localStorage.setItem("webflix-list",JSON.stringify(list));a.classList.toggle("is-favorite",list.includes(id));a.textContent=list.includes(id)?"♥":"♡";renderList()}const g=e.target.closest("[data-genre]");if(g){const hits=movies.filter(m=>m.genre===g.dataset.genre);$("#resultsSection").style.display="block";$("#resultsTitle").textContent=g.dataset.genre+" Movies";render("results",hits);$("#resultsSection").scrollIntoView({behavior:"smooth"})}});
 $("#modalClose").onclick=()=>$("#modal").classList.remove("open");
 $("#modal").onclick=e=>{if(e.target.id==="modal")$("#modal").classList.remove("open")};
-$("#modalList").onclick=e=>{const id=+e.currentTarget.dataset.id;list=list.includes(id)?list.filter(x=>x!==id):[...list,id];localStorage.setItem("webflix-list",JSON.stringify(list));renderList();e.currentTarget.textContent=list.includes(id)?"✓ In My List":"＋ My List"};
+$("#modalList").onclick=e=>{const id=+e.currentTarget.dataset.id;list=list.includes(id)?list.filter(x=>x!==id):[...list,id];localStorage.setItem("webflix-list",JSON.stringify(list));renderList();e.currentTarget.textContent=list.includes(id)?"♥ In Favorites":"♡ Add to Favorites"};
 $("#playHero").onclick=()=>alert("Demo mode: connect your licensed video source to enable playback.");
 $("#infoHero").onclick=()=>openMovie(1);
 $("#modalPlay").onclick=()=>alert("Demo mode: connect your licensed video source to enable playback.");
