@@ -1,6 +1,39 @@
 const baseMovies=[["Interstellar",2014,8.7,"Sci-Fi","https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"],["Inception",2010,8.8,"Thriller","https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"],["The Dark Knight",2008,9,"Action","https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"],["Avatar",2009,7.9,"Fantasy","https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg"],["Oppenheimer",2023,8.6,"Drama","https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"],["Dune: Part Two",2024,8.6,"Sci-Fi","https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"],["Spider-Man: Across the Spider-Verse",2023,8.6,"Animation","https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg"],["Avengers: Endgame",2019,8.2,"Action","https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg"],["Joker",2019,8.1,"Drama","https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg"],["The Matrix",1999,8.7,"Sci-Fi","https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg"],["Top Gun: Maverick",2022,8.2,"Action","https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg"],["Guardians of the Galaxy Vol. 3",2023,7.9,"Adventure","https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg"],["Everything Everywhere All at Once",2022,7.8,"Comedy","https://image.tmdb.org/t/p/w500/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg"],["John Wick: Chapter 4",2023,7.6,"Action","https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg"],["The Batman",2022,7.8,"Crime","https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg"],["Toy Story",1995,8.3,"Animation","https://image.tmdb.org/t/p/w500/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg"]];
-const ntrPhoto="https://s2.dmcdn.net/v/S-EKq1Wfq-Zwl-fif/x480";
-const ntrFilms=[["Brahmarshi Viswamitra",1991,7,"Mythology"],["Ramayanam",1997,7.8,"Mythology"],["Ninnu Choodalani",2001,4.1,"Romance"],["Student No. 1",2001,6.6,"Drama","https://i0.wp.com/isaishop.com/wp-content/uploads/2024/12/Student-No-1.jpg?fit=630%2C630&ssl=1"],["Subbu",2001,4.2,"Romance"],["Aadi",2002,7.2,"Action","https://feeds.abplive.com/onecms/images/uploaded-images/2022/09/26/e483377936b7f8e580afef4eea590f1664183209464239_original.jpg?impolicy=abp_cdn&imwidth=720"],["Allari Ramudu",2002,5.8,"Comedy"],["Naaga",2003,4.8,"Action"],["Simhadri",2003,7.5,"Action","https://media.chitrajyothy.com/media/2023/20230426/simhadri_55a88438a9.jpg"],["Andhrawala",2004,3.4,"Action"],["Samba",2004,5.1,"Action"],["Naa Alludu",2005,4.8,"Comedy"],["Narasimhudu",2005,4.3,"Action"],["Rakhi",2006,7,"Drama"],["Yamadonga",2007,7.2,"Fantasy","https://media.ragalahari.com/news/may2025/ntr-rajamouli-yamadonga-rerelease-in-4k-may17-4x.jpg"],["Kantri",2008,4.7,"Action","https://static.toiimg.com/thumb/msid-12442011,imgsize-78442,width-400,resizemode-4/12442011.jpg"],["Adhurs",2010,6.8,"Comedy"],["Brindaavanam",2010,7.1,"Romance"],["Shakti",2011,3.6,"Action"],["Oosaravelli",2011,6.5,"Thriller"],["Dhammu",2012,4.9,"Action","https://images.moviebuff.com/8ec5e57f-8175-474e-b606-356f9869a34b?w=600"],["Baadshah",2013,6.3,"Action","https://media.ragalahari.com/posters/2013/baadshah-poster-hor.jpg"],["Ramayya Vasthavayya",2013,5.1,"Romance"],["Rabhasa",2014,4.8,"Action"],["Temper",2015,7.4,"Action","https://m.media-amazon.com/images/M/MV5BNzE5YThmYjItMGEyZS00YjQzLWI5YWMtNjFmZjM1YjhlMGViXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"],["Nannaku Prematho",2016,7.5,"Thriller","https://data1.ibtimes.co.in/photo/en/full/35204/super-stylish-tarak-nannaku-prematho-poster.jpg?w=600"],["Janatha Garage",2016,7.2,"Action","https://www.cinejosh.com/gallereys/movies/normal/janatha_garage_new_posters_2608160720/janatha_garage_new_posters_2608160720_05.jpg"],["Jai Lava Kusa",2017,6.8,"Action","https://m.media-amazon.com/images/M/MV5BZGMxN2Q4NzAtOTE5Zi00MjUyLWEzN2UtNGQ5YjFjYmI4NWM1XkEyXkFqcGc@._V1_.jpg"],["Aravinda Sametha",2018,7.3,"Action","https://www.cinejosh.com/newsimg/newsmainimg/aravinda-sametha-1st-day-collections_b_1210181138.jpg"],["RRR",2022,7.8,"Action","https://images.hindustantimes.com/img/2022/03/25/original/RRR_1648211987999.webp"],["Devara: Part 1",2024,6,"Action","https://m.media-amazon.com/images/M/MV5BZWEwNmYwYTAtMmQxYS00ZTgwLWE0NmUtNGIwZDEyZmYwN2EwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"],["War 2",2025,5.1,"Action","https://m.media-amazon.com/images/M/MV5BYTQ0OTkyNzQtMTcyZS00MjViLTk4MWMtMjMzZTk1ODk4YjAyXkEyXkFqcGc@._V1_.jpg"]];
+const ntrPhoto="https://ntrpics.netlify.app/Images/NinnuChoodalani.jpg";
+const ntrFilms=[
+["Ninnu Choodalani",2001,4.1,"Romance","https://ntrpics.netlify.app/Images/NinnuChoodalani.jpg"],
+["Student No. 1",2001,6.6,"Drama","https://ntrpics.netlify.app/Images/StudentNo1.jpg"],
+["Subbu",2001,4.2,"Romance","https://ntrpics.netlify.app/Images/Subbu.jpg"],
+["Aadi",2002,7.2,"Action","https://ntrpics.netlify.app/Images/Aadi.jpg"],
+["Allari Ramudu",2002,5.8,"Comedy","https://ntrpics.netlify.app/Images/AllariRamudu.jpg"],
+["Naaga",2003,4.8,"Action","https://ntrpics.netlify.app/Images/Naaga.jpg"],
+["Simhadri",2003,7.5,"Action","https://ntrpics.netlify.app/Images/Simhadri.jpg"],
+["Andhrawala",2004,3.4,"Action","https://ntrpics.netlify.app/Images/Andhrawala.jpg"],
+["Samba",2004,5.1,"Action","https://ntrpics.netlify.app/Images/Samba.jpg"],
+["Naa Alludu",2005,4.8,"Comedy","https://ntrpics.netlify.app/Images/NaaAlludu.jpg"],
+["Narasimhudu",2005,4.3,"Action","https://ntrpics.netlify.app/Images/Narasimhudu.jpg"],
+["Ashok",2006,5.0,"Romance","https://ntrpics.netlify.app/Images/Ashok.jpg"],
+["Rakhi",2006,7.0,"Drama","https://ntrpics.netlify.app/Images/Rakhi.jpg"],
+["Yamadonga",2007,7.2,"Fantasy","https://ntrpics.netlify.app/Images/Yamadonga.jpg"],
+["Kantri",2008,4.7,"Action","https://ntrpics.netlify.app/Images/Kantri.jpg"],
+["Adhurs",2010,6.8,"Comedy","https://ntrpics.netlify.app/Images/Adhurs.jpg"],
+["Brindavanam",2010,7.1,"Romance","https://ntrpics.netlify.app/Images/Brindavanam.jpg"],
+["Shakti",2011,3.6,"Action","https://ntrpics.netlify.app/Images/Sakthi.jpg"],
+["Oosaravelli",2011,6.5,"Thriller","https://ntrpics.netlify.app/Images/Oosaravelli.jpg"],
+["Dhammu",2012,4.9,"Action","https://ntrpics.netlify.app/Images/Dammu.jpg"],
+["Baadshah",2013,6.3,"Action","https://ntrpics.netlify.app/Images/Baadshah.jpg"],
+["Ramayya Vasthavayya",2013,5.1,"Romance","https://ntrpics.netlify.app/Images/RamayyaVasthavayya.jpg"],
+["Rabhasa",2014,4.8,"Action","https://ntrpics.netlify.app/Images/Rabhasa.jpg"],
+["Temper",2015,7.4,"Action","https://ntrpics.netlify.app/Images/Temper.jpg"],
+["Nannaku Prematho",2016,7.5,"Thriller","https://ntrpics.netlify.app/Images/NannakuPrematho.jpg"],
+["Janatha Garage",2016,7.2,"Action","https://ntrpics.netlify.app/Images/JanathaGarage.jpg"],
+["Jai Lava Kusa",2017,6.8,"Action","https://ntrpics.netlify.app/Images/JaiLavaKusa.jpg"],
+["Aravinda Sametha Veera Raghava",2018,7.3,"Action","https://ntrpics.netlify.app/Images/AravindaSamethaVeeraRaghava.jpg"],
+["RRR",2022,7.8,"Action","https://ntrpics.netlify.app/Images/RRR.jpg"],
+["Devara: Part 1",2024,6.0,"Action","https://ntrpics.netlify.app/Images/DevaraPart1.jpg"],
+["War 2",2025,5.1,"Action","https://ntrpics.netlify.app/Images/WAR2.jpg"]
+];
+
 const movies=[...baseMovies.map((x,i)=>({id:i+1,title:x[0],year:x[1],rating:x[2],genre:x[3],poster:x[4],collection:"Webflix"})),...ntrFilms.map((x,i)=>({id:101+i,title:x[0],year:x[1],rating:x[2],genre:x[3],poster:x[4]||ntrPhoto,collection:"Jr NTR"}))];
 let list=JSON.parse(localStorage.getItem("webflix-list")||"[]");
 const $=s=>document.querySelector(s);
